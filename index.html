@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>ร้านเฟรนฟรายชีส</title>
+  <style>
+    body {
+      font-family: 'Prompt', sans-serif;
+      background-color: #b45706;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Navbar */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #eda642;
+      padding: 10px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .logo img {
+      height: 60px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 16px;
+      padding: 8px 15px;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      background: #fb8c00;
+    }
+
+    /* Ads Strip */
+    .ads-strip {
+      width: 100%;
+      background-color: #ffd54f;
+      overflow: hidden;
+      position: relative;
+      padding: 20px 0;
+    }
+
+    .ads-track {
+      display: flex;
+      width: max-content;
+      align-items: center;
+      gap: 50px;
+      animation: scroll-left 30s linear infinite;
+    }
+
+    .ads-track img {
+      max-height: 200px;
+      width: auto;
+      object-fit: contain;
+      cursor: pointer; /* ✅ ให้รู้ว่าคลิกได้ */
+      transition: transform 0.3s ease;
+    }
+
+    .ads-track img:hover {
+      transform: scale(1.05);
+    }
+
+    @keyframes scroll-left {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ✅ Popup (Modal) */
+    .modal {
+      display: none; /* เริ่มต้นซ่อน */
+      position: fixed;
+      z-index: 10000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.7); /* พื้นหลังโปร่ง */
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: 10% auto;
+      padding: 20px;
+      border-radius: 10px;
+      width: 60%;
+      max-width: 600px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    .modal-content img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close:hover {
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">
+      <img src="โลโก้.jpg" alt="โลโก้ร้าน">
+    </div>
+    <div class="nav-links">
+      <a href="index.html">🏠 หน้าแรก</a>
+      <a href="product.html">🛍️ สินค้า</a>
+      <a href="payment.html">💳 ชำระเงิน</a>
+      <a href="contact.html">📞 ติดต่อเรา</a>
+    </div>
+  </nav>
+
+  <!-- โฆษณา -->
+  <div class="ads-strip">
+    <div class="ads-track">
+      <img src="โฆษณา1.jpg" alt="ads" onclick="openModal(this)">
+      <img src="โฆษณา2.jpg" alt="ads" onclick="openModal(this)">
+      <img src="โฆษณา3.jpg" alt="ads" onclick="openModal(this)">
+      <img src="โฆษณา4.jpg" alt="ads" onclick="openModal(this)">
+      <img src="โฆษณา5.jpg" alt="ads" onclick="openModal(this)">
+      <img src="โฆษณา6.jpg" alt="ads" onclick="openModal(this)">
+
+      <!-- ✅ ทำซ้ำ -->
+      <img src="โฆษณา1.jpg" alt="ads" onclick="openModal(this)">
+      <img src="โฆษณา2.jpg" alt="ads" onclick="openModal(this)">
+      <img src="โฆษณา3.jpg" alt="ads" onclick="openModal(this)">
+      <img src="โฆษณา4.jpg" alt="ads" onclick="openModal(this)">
+      <img src="โฆษณา5.jpg" alt="ads" onclick="openModal(this)">
+      <img src="โฆษณา6.jpg" alt="ads" onclick="openModal(this)">
+    </div>
+  </div>
+
+  <!-- ✅ Popup -->
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <img id="popup-img" src="" alt="popup">
+      <p id="popup-text">รายละเอียดโปรโมชั่น</p>
+    </div>
+  </div>
+<!-- ✅ Footer -->
+<footer style="background:#333; color:#fff; text-align:center; padding:20px; margin-top:50px;">
+  <p>🍟 ร้านเฟรนฟรายชีส 🧀 | โทร: 012-345-6789 | Line: @frenchfries</p>
+  <p>© 2025 French Fries Cheese. All rights reserved.</p>
+</footer>
+
+  <script>
+    function openModal(imgElement) {
+      document.getElementById("myModal").style.display = "block";
+      document.getElementById("popup-img").src = imgElement.src;
+      document.getElementById("popup-text").innerText = imgElement.alt || "โปรโมชั่นพิเศษ!";
+    }
+
+    function closeModal() {
+      document.getElementById("myModal").style.display = "none";
+    }
+
+    // ปิด popup ถ้าคลิกด้านนอก
+    window.onclick = function(event) {
+      let modal = document.getElementById("myModal");
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    }
+  </script>
+
+</body>
+</html>

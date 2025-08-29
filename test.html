@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>ร้านเฟรนช์ฟรายส์</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* โลโก้ร้าน */
+    .logo {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      z-index: 1000;
+    }
+
+    .logo img {
+      height: 50px;
+    }
+
+    /* กล่องสินค้า */
+    .product-card {
+      width: 250px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 0 10px #eee;
+      margin: 80px auto 20px auto; /* เว้นพื้นที่บนให้โลโก้ */
+    }
+
+    .product-card img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .buy-button {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    /* ตะกร้า */
+    #cartBox {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: white;
+      border: 1px solid #ccc;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      padding: 15px;
+      border-radius: 10px;
+      display: none;
+      width: 250px;
+      z-index: 999;
+    }
+
+    #cartBox h4 {
+      margin-top: 0;
+      font-size: 16px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 5px;
+    }
+
+    #cartItems li {
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- โลโก้ร้าน -->
+  <div class="logo">
+    <img src="https://via.placeholder.com/120x50.png?text=My+Logo" alt="โลโก้ร้าน">
+  </div>
+
+  <!-- สินค้า -->
+  <div class="product-card">
+    <img src="https://via.placeholder.com/250x150.png?text=French+Fries" alt="เฟรนช์ฟรายส์">
+    <h3>เฟรนช์ฟรายส์</h3>
+    <p>Size M , L , XL</p>
+    <button class="buy-button" onclick="addToCart()">สั่งซื้อ</button>
+  </div>
+
+  <!-- ตะกร้า -->
+  <div id="cartBox">
+    <h4>🛒 ตะกร้าสินค้า</h4>
+    <ul id="cartItems"></ul>
+  </div>
+
+  <script>
+    function addToCart() {
+      const cartBox = document.getElementById("cartBox");
+      const cartItems = document.getElementById("cartItems");
+
+      const item = document.createElement("li");
+      item.textContent = "เฟรนช์ฟรายส์ 1 กล่อง";
+      cartItems.appendChild(item);
+
+      cartBox.style.display = "block";
+    }
+  </script>
+
+</body>
+</html>

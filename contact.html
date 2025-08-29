@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ติดต่อเรา</title>
+  <!-- ใช้ไอคอนจาก FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: "Prompt", sans-serif;
+      background: linear-gradient(to bottom right, #c37816, #fcf45e);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* แทบหัวข้อ */
+    header {
+      width: 100%;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center; /* ทำให้หัวข้ออยู่ตรงกลาง */
+      padding: 15px 30px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+    }
+
+    /* ปุ่มกลับ */
+    .home-btn {
+      position: absolute;
+      left: 20px; /* ชิดซ้าย */
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: #8b5e3c;
+      color: white;
+      padding: 8px 18px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1rem;
+      transition: background 0.3s;
+    }
+
+    .home-btn:hover {
+      background-color: #a47148;
+    }
+
+    header h2 {
+      margin: 0;
+      color: #4e342e;
+    }
+
+    /* เนื้อหากลางหน้า */
+    main {
+      margin-top: 120px; /* ดันลงมาไม่ให้ทับ header */
+      text-align: center;
+    }
+
+    h1 {
+      color: #4e342e;
+      margin-bottom: 30px;
+    }
+
+    /* ปุ่มต่างๆ */
+    .button-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+      margin: 0 auto;       /* จัดให้อยู่ตรงกลาง */
+      max-width: 300px;     /* จำกัดความกว้าง ไม่ให้กว้างเกินไป */
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 1.3rem;
+      padding: 15px 30px;
+      border-radius: 15px;
+      text-decoration: none;
+      font-weight: bold;
+      color: white;
+      width: 100%;           /* ปุ่มเต็มขอบ container */
+      transition: transform 0.2s, box-shadow 0.3s;
+    }
+
+    .btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    .facebook {
+      background-color: #1877f2;
+    }
+
+    .phone {
+      background-color: #4caf50;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <a href="index.html" class="home-btn">
+      <i class="fas fa-arrow-left"></i> กลับหน้าหลัก
+    </a>
+    <h2>📞 ติดต่อร้านเฟรนฟรายชีส</h2>
+  </header>
+
+  <!-- เนื้อหา -->
+  <main>
+    <h1>เลือกการติดต่อ</h1>
+    <div class="button-container">
+      <!-- ปุ่มไป Facebook -->
+      <a href="https://www.facebook.com/Fries4you" target="_blank" class="btn facebook">
+        <i class="fab fa-facebook-f"></i> ไปที่ Facebook
+      </a>
+
+      <!-- ปุ่มโทรออก -->
+      <a href="tel:0812345678" class="btn phone">
+        <i class="fas fa-phone"></i> โทรเลย
+      </a>
+    </div>
+  </main>
+</body>
+</html>

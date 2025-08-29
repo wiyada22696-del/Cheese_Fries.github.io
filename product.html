@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <style>
+    
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+  }
+
+  .header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #f8f8f8;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 1000;
+  }
+
+  .cart-icon {
+    background-color: #333;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-right: 75px; 
+  }
+
+  .cart-box {
+    position: fixed;
+    top: 60px;
+    right: 40px;
+    width: 300px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 15px;
+    display: none;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+
+  .cart-box ul {
+    padding-left: 20px;
+  }
+
+  .cart-box li {
+    margin-bottom: 5px;
+  }
+
+  .checkout-btn {
+    margin-top: 15px;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: none;
+  }
+
+  .products-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 100px 20px 40px;
+    gap: 20px;
+  }
+
+  .product {
+    background-color: white;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    width: 230px;
+    text-align: center;
+    transition: transform 0.2s;
+  }
+
+  .product:hover {
+    transform: translateY(-5px);
+  }
+
+  .product img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 6px;
+  }
+
+  select {
+    padding: 8px;
+    margin-top: 10px;
+    width: 100%;
+  }
+
+  .btn {
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+  }
+
+.back-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 14px 26px;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.back-button:hover {
+  background-color: #0056b3;
+}
+
+
+  @media (max-width: 768px) {
+    .products-container {
+      flex-direction: column;
+      align-items: center;
+      padding: 120px 20px 40px;
+    }
+
+    .product {
+      width: 90%;
+      max-width: 350px;
+    }
+
+    
+  }
+</style>
+
+
+    
+
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header">
+   <button onclick="location.href='index.html'" class="back-button">
+    
+  ⬅ กลับหน้าหลัก
+</button>
+
+
+    <div class="cart-icon" onclick="toggleCart()">🛒 ตะกร้า: <span id="cartCount">0</span></div>
+  </div>
+
+  <!-- Cart Box -->
+  <div class="cart-box" id="cartBox">
+    <h4>สินค้าในตะกร้า:</h4>
+    <ul id="cartItems"></ul>
+    <button class="checkout-btn" id="checkoutBtn" onclick="goToPayment()">ยืนยันสินค้า</button>
+  </div>
+
+  <!-- สินค้าทั้งหมด -->
+  <div class="products-container" id="productsContainer">
+    <!-- สินค้าจะถูกสร้างผ่าน JavaScript --> 
+  </div>
+
+  <script>
+    // รายการสินค้า (สามารถเพิ่มสินค้าใหม่ได้ที่นี่)
+   const products = [
+  { id: 1, name: "เฟรนฟรายชีส", image: "เฟรนฟราย.jpg", prices: { M: 39, L: 49, XL: 69 } },
+  { id: 2, name: "ไก่ป๊อบ", image: "ไก่ป๊อบ.jpg", prices: { M: 39, L: 49, XL: 69 } },
+  { id: 3, name: "นักเก็ต", image: "นักเก็ต.jpg", prices: { M: 39, L: 49, XL: 69 } },
+  { id: 4, name: "ไก่กรอบ", image: "ไก่กรอบ.jpg", prices: { M: 39, L: 49, XL: 69 } },
+  { id: 5, name: "ข้าวไก่กรอบ", image: "ข้าว.jpg", prices: { M: 39, L: 49, XL: 69 } },
+  { id: 6, name: "เบอร์เกอร์", image: "เบอร์เกอร์.jpg", prices: { M: 39, L: 49, XL: 69 } }
+];
+
+    const cart = [];
+
+    // แสดงสินค้าทั้งหมด
+    const container = document.getElementById('productsContainer');
+    products.forEach(product => {
+      const div = document.createElement('div');
+      div.className = "product";
+      div.innerHTML = `
+        <img src="${product.image}" alt="${product.name}">
+        <h4>${product.name}</h4>
+        <select id="size-${product.id}">
+          <option value="">-- เลือกไซส์ --</option>
+          <option value="M">M 39-บ. </option>
+          <option value="L">L 49-บ.</option>
+          <option value="XL">XL 69-บ.</option>
+        </select><br>
+        <button class="btn" onclick="addToCart(${product.id})">สั่งซื้อ</button>
+      `;
+      container.appendChild(div);
+    });
+
+    // เปิด/ปิดตะกร้า
+    function toggleCart() {
+      const cartBox = document.getElementById("cartBox");
+      cartBox.style.display = cartBox.style.display === "block" ? "none" : "block";
+    }
+
+    // เพิ่มสินค้าเข้าตะกร้า
+   function addToCart(productId) {
+  const product = products.find(p => p.id === productId);
+  const size = document.getElementById(`size-${productId}`).value;
+
+  if (!size) {
+    alert("กรุณาเลือกไซส์ก่อนสั่งซื้อ");
+    return;
+  }
+
+  const price = product.prices[size]; // 👉 ดึงราคาตามไซส์
+  cart.push({ name: product.name, size: size, price: price }); // 👉 เพิ่ม price เข้า cart
+  updateCart(); // 👉 อัปเดตตะกร้าพร้อมยอดรวม
+}
+
+
+    // อัปเดตรายการในตะกร้า
+   function updateCart() {
+  const cartCount = document.getElementById("cartCount");
+  const cartItems = document.getElementById("cartItems");
+  const checkoutBtn = document.getElementById("checkoutBtn");
+
+  cartCount.textContent = cart.length;
+  cartItems.innerHTML = "";
+
+  let total = 0;
+
+  cart.forEach((item, index) => {
+    const li = document.createElement("li");
+
+    // แสดงชื่อ ไซส์ ราคา และปุ่มลบ
+    li.innerHTML = `
+  ${item.name} - ไซส์ ${item.size} (${item.price} บ.)
+  <button style="
+    margin-left: 10px; 
+    background-color: #dc3545; 
+    color: white; 
+    border: none; 
+    padding: 3px 8px; 
+    border-radius: 4px; 
+    cursor: pointer;
+  " onclick="removeFromCart(${index})">ลบ</button>
+`;
+
+
+    cartItems.appendChild(li);
+    total += item.price;
+  });
+
+  if (cart.length > 0) {
+    checkoutBtn.style.display = "block";
+
+    const totalElement = document.createElement("div");
+    totalElement.style.marginTop = "10px";
+    totalElement.style.fontWeight = "bold";
+    totalElement.style.textAlign = "right";
+    totalElement.textContent = `ยอดรวม: ${total} บาท`;
+
+    cartItems.appendChild(totalElement);
+  } else {
+    checkoutBtn.style.display = "none";
+  }
+}
+
+function removeFromCart(index) {
+  cart.splice(index, 1); // ลบ 1 รายการจากตำแหน่งที่กำหนด
+  updateCart(); // รีเฟรชตะกร้า
+}
+
+    
+
+    // ไปหน้าชำระเงิน พร้อมส่งข้อมูลตะกร้า
+  // ... ฟังก์ชันอื่น ๆ เช่น toggleCart(), addToCart(), updateCart()
+
+  function goToPayment() {
+    const cartData = encodeURIComponent(JSON.stringify(cart));
+
+    // ดึงไซส์จากสินค้าแรกในตะกร้า
+    const selectedSize = cart.length > 0 ? cart[0].size : "-";
+
+    // คำนวณยอดรวม
+    const sizePrices = { M: 39, L: 49, XL: 69 };
+    let totalPrice = 0;
+
+    cart.forEach(item => {
+      totalPrice += sizePrices[item.size] || 0;
+    });
+
+    // ลิงก์ไป payment พร้อมส่งข้อมูล
+    window.location.href = `payment.html?size=${selectedSize}&total=${totalPrice}`;
+  }
+  
+</script>
+
+  </script>
+
+
+
+</body>
+</html>

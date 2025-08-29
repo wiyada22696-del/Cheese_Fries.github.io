@@ -1,368 +1,368 @@
-<!DOCTYPE html>
-<html lang="th">
-<head>
-  <meta charset="UTF-8">
-  <title>ร้านเฟรนฟรายชีส</title>
-  <style>
-    body {
-      font-family: 'Prompt', sans-serif;
-      background-color: #b45706;
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+    <!DOCTYPE html>
+    <html lang="th">
+    <head>
+      <meta charset="UTF-8">
+      <title>ร้านเฟรนฟรายชีส</title>
+      <style>
+        body {
+          font-family: 'Prompt', sans-serif;
+          background-color: #b45706;
+          margin: 0;
+          padding: 0;
+          min-height: 100vh;
+          display: flex;
+          flex-direction: column;
+        }
 
-    /* Navbar */
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #eda642;
-      padding: 10px 20px;
-      position: sticky;
-      top: 0;
-      z-index: 999;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    }
+        /* Navbar */
+        nav {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          background-color: #eda642;
+          padding: 10px 20px;
+          position: sticky;
+          top: 0;
+          z-index: 999;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
 
-    .logo img {
-      height: 60px;
-      width: 60px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
+        .logo img {
+          height: 60px;
+          width: 60px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
 
-    .nav-links {
-      display: flex;
-      gap: 20px;
-    }
+        .nav-links {
+          display: flex;
+          gap: 20px;
+        }
 
-    .nav-links a {
-      color: #fff;
-      text-decoration: none;
-      font-size: 16px;
-      padding: 8px 15px;
-      border-radius: 6px;
-      transition: background 0.3s ease;
-    }
+        .nav-links a {
+          color: #fff;
+          text-decoration: none;
+          font-size: 16px;
+          padding: 8px 15px;
+          border-radius: 6px;
+          transition: background 0.3s ease;
+        }
 
-    .nav-links a:hover {
-      background: #fb8c00;
-    }
+        .nav-links a:hover {
+          background: #fb8c00;
+        }
 
-    /* Ads Strip */
-    .ads-strip {
-      width: 100%;
-      background-color: #ffd54f;
-      overflow: hidden;
-      position: relative;
-      padding: 20px 0;
-    }
+        /* Ads Strip */
+        .ads-strip {
+          width: 100%;
+          background-color: #ffd54f;
+          overflow: hidden;
+          position: relative;
+          padding: 20px 0;
+        }
 
-    .ads-track {
-      display: flex;
-      width: max-content;
-      align-items: center;
-      gap: 50px;
-      animation: scroll-left 30s linear infinite;
-    }
+        .ads-track {
+          display: flex;
+          width: max-content;
+          align-items: center;
+          gap: 50px;
+          animation: scroll-left 30s linear infinite;
+        }
 
-    .ads-track img {
-      max-height: 200px;
-      width: auto;
-      object-fit: contain;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
+        .ads-track img {
+          max-height: 200px;
+          width: auto;
+          object-fit: contain;
+          cursor: pointer;
+          transition: transform 0.3s ease;
+        }
 
-    .ads-track img:hover {
-      transform: scale(1.05);
-    }
+        .ads-track img:hover {
+          transform: scale(1.05);
+        }
 
-    @keyframes scroll-left {
-      0%   { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
+        @keyframes scroll-left {
+          0%   { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
 
-    .ads-strip:hover .ads-track {
-      animation-play-state: paused;
-    }
+        .ads-strip:hover .ads-track {
+          animation-play-state: paused;
+        }
 
-    /* Popup Modal */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 10000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.7);
-    }
+        /* Popup Modal */
+        .modal {
+          display: none;
+          position: fixed;
+          z-index: 10000;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          overflow: auto;
+          background-color: rgba(0,0,0,0.7);
+        }
 
-    .modal-content {
-      background-color: #fff;
-      margin: 10% auto;
-      padding: 20px;
-      border-radius: 10px;
-      width: 60%;
-      max-width: 600px;
-      text-align: center;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    }
+        .modal-content {
+          background-color: #fff;
+          margin: 10% auto;
+          padding: 20px;
+          border-radius: 10px;
+          width: 60%;
+          max-width: 600px;
+          text-align: center;
+          box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
 
-    .modal-content img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 10px;
-    }
+        .modal-content img {
+          max-width: 100%;
+          height: auto;
+          border-radius: 10px;
+        }
 
-    .close {
-      color: #aaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+        .close {
+          color: #aaa;
+          float: right;
+          font-size: 28px;
+          font-weight: bold;
+          cursor: pointer;
+        }
 
-    .close:hover {
-      color: #000;
-    }
+        .close:hover {
+          color: #000;
+        }
 
-    /* Hero Section */
-    .hero {
-      text-align: center;
-      padding: 80px 20px;
-      background:#fff3e0;
-    }
+        /* Hero Section */
+        .hero {
+          text-align: center;
+          padding: 80px 20px;
+          background:#fff3e0;
+        }
 
-    .hero h1 {
-      font-size: 40px;
-      color:#d35400;
-      margin-bottom: 20px;
-    }
+        .hero h1 {
+          font-size: 40px;
+          color:#d35400;
+          margin-bottom: 20px;
+        }
 
-    .hero p {
-      font-size: 20px;
-      color:#555;
-    }
+        .hero p {
+          font-size: 20px;
+          color:#555;
+        }
 
-    .hero a {
-      display:inline-block;
-      margin-top:20px;
-      padding:12px 25px;
-      background:#e67e22;
-      color:#fff;
-      border-radius:8px;
-      text-decoration:none;
-      font-size:18px;
-    }
+        .hero a {
+          display:inline-block;
+          margin-top:20px;
+          padding:12px 25px;
+          background:#e67e22;
+          color:#fff;
+          border-radius:8px;
+          text-decoration:none;
+          font-size:18px;
+        }
 
-    /* Product Section */
-    .products {
-      padding:60px 20px;
-      background:#fff;
-    }
+        /* Product Section */
+        .products {
+          padding:60px 20px;
+          background:#fff;
+        }
 
-    .products h2 {
-      text-align:center;
-      color:#d35400;
-      margin-bottom:40px;
-    }
+        .products h2 {
+          text-align:center;
+          color:#d35400;
+          margin-bottom:40px;
+        }
 
-    .product-cards {
-      display:flex;
-      justify-content:center;
-      gap:30px;
-      flex-wrap:wrap;
-    }
+        .product-cards {
+          display:flex;
+          justify-content:center;
+          gap:30px;
+          flex-wrap:wrap;
+        }
 
-    .product-card {
-      background:#ffe0b2;
-      padding:20px;
-      border-radius:12px;
-      width:250px;
-      text-align:center;
-      box-shadow:0 4px 10px rgba(0,0,0,0.1);
-    }
+        .product-card {
+          background:#ffe0b2;
+          padding:20px;
+          border-radius:12px;
+          width:250px;
+          text-align:center;
+          box-shadow:0 4px 10px rgba(0,0,0,0.1);
+        }
 
-    .product-card img {
-      width:100%;
-      border-radius:10px;
-    }
+        .product-card img {
+          width:100%;
+          border-radius:10px;
+        }
 
-    /* Footer */
-    footer {
-      background:#333;
-      color:#fff;
-      text-align:center;
-      padding:20px;
-      margin-top:auto;
-    }
+        /* Footer */
+        footer {
+          background:#333;
+          color:#fff;
+          text-align:center;
+          padding:20px;
+          margin-top:auto;
+        }
 
-    /* ========================= */
-    /* Responsive สำหรับมือถือ */
-    @media screen and (max-width: 768px) {
-      /* Navbar */
-      nav {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+        /* ========================= */
+        /* Responsive สำหรับมือถือ */
+        @media screen and (max-width: 768px) {
+          /* Navbar */
+          nav {
+            flex-direction: column;
+            align-items: flex-start;
+          }
 
-      .nav-links {
-        flex-direction: column;
-        width: 100%;
-        gap: 10px;
-        margin-top: 10px;
-      }
+          .nav-links {
+            flex-direction: column;
+            width: 100%;
+            gap: 10px;
+            margin-top: 10px;
+          }
 
-      .nav-links a {
-        width: 100%;
-        text-align: center;
-        padding: 10px 0;
-      }
+          .nav-links a {
+            width: 100%;
+            text-align: center;
+            padding: 10px 0;
+          }
 
-      /* Hero Section */
-      .hero h1 {
-        font-size: 28px;
-      }
+          /* Hero Section */
+          .hero h1 {
+            font-size: 28px;
+          }
 
-      .hero p {
-        font-size: 16px;
-      }
+          .hero p {
+            font-size: 16px;
+          }
 
-      .hero a {
-        font-size: 16px;
-        padding: 10px 20px;
-      }
+          .hero a {
+            font-size: 16px;
+            padding: 10px 20px;
+          }
 
-      /* Product cards */
-      .product-cards {
-        flex-direction: column;
-        align-items: center;
-      }
+          /* Product cards */
+          .product-cards {
+            flex-direction: column;
+            align-items: center;
+          }
 
-      .product-card {
-        width: 80%;
-        margin-bottom: 20px;
-      }
+          .product-card {
+            width: 80%;
+            margin-bottom: 20px;
+          }
 
-      /* Ads Strip */
-      .ads-track {
-        gap: 20px;
-      }
+          /* Ads Strip */
+          .ads-track {
+            gap: 20px;
+          }
 
-      .ads-track img {
-        max-height: 150px;
-      }
+          .ads-track img {
+            max-height: 150px;
+          }
 
-      /* Popup */
-      .modal-content {
-        width: 90%;
-        margin: 20% auto;
-      }
-    }
+          /* Popup */
+          .modal-content {
+            width: 90%;
+            margin: 20% auto;
+          }
+        }
 
-  </style>
-</head>
-<body>
+      </style>
+    </head>
+    <body>
 
-  <!-- Navbar -->
-  <nav>
-    <div class="logo">
-      <img src="โลโก้.jpg" alt="โลโก้ร้าน">
-    </div>
-    <div class="nav-links">
-      <a href="index.html">🏠 หน้าแรก</a>
-      <a href="product.html">🛍️ สินค้า</a>
-      <a href="payment.html">💳 ชำระเงิน</a>
-      <a href="contact.html">📞 ติดต่อเรา</a>
-    </div>
-  </nav>
+      <!-- Navbar -->
+      <nav>
+        <div class="logo">
+          <img src="โลโก้.jpg" alt="โลโก้ร้าน">
+        </div>
+        <div class="nav-links">
+          <a href="index.html">🏠 หน้าแรก</a>
+          <a href="product.html">🛍️ สินค้า</a>
+          <a href="payment.html">💳 ชำระเงิน</a>
+          <a href="contact.html">📞 ติดต่อเรา</a>
+        </div>
+      </nav>
 
-  <!-- Ads Strip -->
-  <div class="ads-strip">
-    <div class="ads-track">
-      <img src="โฆษณา1.jpg" alt="โปรโมชั่น 1" onclick="openModal(this)">
-      <img src="โฆษณา2.jpg" alt="โปรโมชั่น 2" onclick="openModal(this)">
-      <img src="โฆษณา3.jpg" alt="โปรโมชั่น 3" onclick="openModal(this)">
-      <img src="โฆษณา4.jpg" alt="โปรโมชั่น 4" onclick="openModal(this)">
-      <img src="โฆษณา5.jpg" alt="โปรโมชั่น 5" onclick="openModal(this)">
-      <img src="โฆษณา6.jpg" alt="โปรโมชั่น 6" onclick="openModal(this)">
-      <img src="โฆษณา1.jpg" alt="โปรโมชั่น 1" onclick="openModal(this)">
-      <img src="โฆษณา2.jpg" alt="โปรโมชั่น 2" onclick="openModal(this)">
-      <img src="โฆษณา3.jpg" alt="โปรโมชั่น 3" onclick="openModal(this)">
-      <img src="โฆษณา4.jpg" alt="โปรโมชั่น 4" onclick="openModal(this)">
-      <img src="โฆษณา5.jpg" alt="โปรโมชั่น 5" onclick="openModal(this)">
-      <img src="โฆษณา6.jpg" alt="โปรโมชั่น 6" onclick="openModal(this)">
-    </div>
-  </div>
-
-  <!-- Hero Section -->
-  <section class="hero">
-    <h1>🍟 เฟรนฟรายชีส กรอบนอก นุ่มใน 🧀</h1>
-    <p>อร่อยเต็มคำ ราคาสบายกระเป๋า</p>
-    <a href="product.html">สั่งเลย 💳</a>
-  </section>
-
-  <!-- Product Section -->
-  <section class="products">
-    <h2>เมนูยอดนิยม</h2>
-    <div class="product-cards">
-      <div class="product-card">
-        <img src="เฟรนฟราย.jpg" alt="เฟรนฟรายชีส">
-        <h3>เฟรนฟรายชีส</h3>
-        <p>ราคา 59 บาท</p>
+      <!-- Ads Strip -->
+      <div class="ads-strip">
+        <div class="ads-track">
+          <img src="โฆษณา1.jpg" alt="โปรโมชั่น 1" onclick="openModal(this)">
+          <img src="โฆษณา2.jpg" alt="โปรโมชั่น 2" onclick="openModal(this)">
+          <img src="โฆษณา3.jpg" alt="โปรโมชั่น 3" onclick="openModal(this)">
+          <img src="โฆษณา4.jpg" alt="โปรโมชั่น 4" onclick="openModal(this)">
+          <img src="โฆษณา5.jpg" alt="โปรโมชั่น 5" onclick="openModal(this)">
+          <img src="โฆษณา6.jpg" alt="โปรโมชั่น 6" onclick="openModal(this)">
+          <img src="โฆษณา1.jpg" alt="โปรโมชั่น 1" onclick="openModal(this)">
+          <img src="โฆษณา2.jpg" alt="โปรโมชั่น 2" onclick="openModal(this)">
+          <img src="โฆษณา3.jpg" alt="โปรโมชั่น 3" onclick="openModal(this)">
+          <img src="โฆษณา4.jpg" alt="โปรโมชั่น 4" onclick="openModal(this)">
+          <img src="โฆษณา5.jpg" alt="โปรโมชั่น 5" onclick="openModal(this)">
+          <img src="โฆษณา6.jpg" alt="โปรโมชั่น 6" onclick="openModal(this)">
+        </div>
       </div>
-      <div class="product-card">
-        <img src="เบอร์เกอร์.jpg" alt="เบอร์เกอร์">
-        <h3>เบอร์เกอร์</h3>
-        <p>ราคา 79 บาท</p>
+
+      <!-- Hero Section -->
+      <section class="hero">
+        <h1>🍟 เฟรนฟรายชีส กรอบนอก นุ่มใน 🧀</h1>
+        <p>อร่อยเต็มคำ ราคาสบายกระเป๋า</p>
+        <a href="product.html">สั่งเลย 💳</a>
+      </section>
+
+      <!-- Product Section -->
+      <section class="products">
+        <h2>เมนูยอดนิยม</h2>
+        <div class="product-cards">
+          <div class="product-card">
+            <img src="เฟรนฟราย.jpg" alt="เฟรนฟรายชีส">
+            <h3>เฟรนฟรายชีส</h3>
+            <p>ราคา 59 บาท</p>
+          </div>
+          <div class="product-card">
+            <img src="เบอร์เกอร์.jpg" alt="เบอร์เกอร์">
+            <h3>เบอร์เกอร์</h3>
+            <p>ราคา 79 บาท</p>
+          </div>
+          <div class="product-card">
+            <img src="นักเก็ต.jpg" alt="เฟรนฟรายชีสไก่">
+            <h3>นักเก็ต</h3>
+            <p>ราคา 89 บาท</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Popup Modal -->
+      <div id="myModal" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeModal()">&times;</span>
+          <img id="popup-img" src="" alt="popup">
+          <p id="popup-text">รายละเอียดโปรโมชั่น</p>
+        </div>
       </div>
-      <div class="product-card">
-        <img src="นักเก็ต.jpg" alt="เฟรนฟรายชีสไก่">
-        <h3>นักเก็ต</h3>
-        <p>ราคา 89 บาท</p>
-      </div>
-    </div>
-  </section>
 
-  <!-- Popup Modal -->
-  <div id="myModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal()">&times;</span>
-      <img id="popup-img" src="" alt="popup">
-      <p id="popup-text">รายละเอียดโปรโมชั่น</p>
-    </div>
-  </div>
+      <!-- Footer -->
+      <footer>
+        <p>🍟 ร้านเฟรนฟรายชีส 🧀 | โทร: 012-345-6789 | Line: @frenchfries</p>
+        <p>© 2025 French Fries Cheese. All rights reserved.</p>
+      </footer>
 
-  <!-- Footer -->
-  <footer>
-    <p>🍟 ร้านเฟรนฟรายชีส 🧀 | โทร: 012-345-6789 | Line: @frenchfries</p>
-    <p>© 2025 French Fries Cheese. All rights reserved.</p>
-  </footer>
+      <script>
+        function openModal(imgElement) {
+          document.getElementById("myModal").style.display = "block";
+          document.getElementById("popup-img").src = imgElement.src;
+          document.getElementById("popup-text").innerText = imgElement.alt || "โปรโมชั่นพิเศษ!";
+        }
 
-  <script>
-    function openModal(imgElement) {
-      document.getElementById("myModal").style.display = "block";
-      document.getElementById("popup-img").src = imgElement.src;
-      document.getElementById("popup-text").innerText = imgElement.alt || "โปรโมชั่นพิเศษ!";
-    }
+        function closeModal() {
+          document.getElementById("myModal").style.display = "none";
+        }
 
-    function closeModal() {
-      document.getElementById("myModal").style.display = "none";
-    }
+        window.onclick = function(event) {
+          let modal = document.getElementById("myModal");
+          if (event.target === modal) {
+            modal.style.display = "none";
+          }
+        }
+      </script>
 
-    window.onclick = function(event) {
-      let modal = document.getElementById("myModal");
-      if (event.target === modal) {
-        modal.style.display = "none";
-      }
-    }
-  </script>
-
-</body>
-</html>
+    </body>
+    </html>

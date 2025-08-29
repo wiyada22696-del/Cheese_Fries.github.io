@@ -9,6 +9,9 @@
       background-color: #b45706;
       margin: 0;
       padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
     /* Navbar */
@@ -26,6 +29,9 @@
 
     .logo img {
       height: 60px;
+      width: 60px;
+      border-radius: 50%;
+      object-fit: cover;
     }
 
     .nav-links {
@@ -67,7 +73,7 @@
       max-height: 200px;
       width: auto;
       object-fit: contain;
-      cursor: pointer; /* ✅ ให้รู้ว่าคลิกได้ */
+      cursor: pointer;
       transition: transform 0.3s ease;
     }
 
@@ -80,9 +86,13 @@
       100% { transform: translateX(-50%); }
     }
 
-    /* ✅ Popup (Modal) */
+    .ads-strip:hover .ads-track {
+      animation-play-state: paused;
+    }
+
+    /* Popup Modal */
     .modal {
-      display: none; /* เริ่มต้นซ่อน */
+      display: none;
       position: fixed;
       z-index: 10000;
       left: 0;
@@ -90,7 +100,7 @@
       width: 100%;
       height: 100%;
       overflow: auto;
-      background-color: rgba(0,0,0,0.7); /* พื้นหลังโปร่ง */
+      background-color: rgba(0,0,0,0.7);
     }
 
     .modal-content {
@@ -121,6 +131,141 @@
     .close:hover {
       color: #000;
     }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 80px 20px;
+      background:#fff3e0;
+    }
+
+    .hero h1 {
+      font-size: 40px;
+      color:#d35400;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      color:#555;
+    }
+
+    .hero a {
+      display:inline-block;
+      margin-top:20px;
+      padding:12px 25px;
+      background:#e67e22;
+      color:#fff;
+      border-radius:8px;
+      text-decoration:none;
+      font-size:18px;
+    }
+
+    /* Product Section */
+    .products {
+      padding:60px 20px;
+      background:#fff;
+    }
+
+    .products h2 {
+      text-align:center;
+      color:#d35400;
+      margin-bottom:40px;
+    }
+
+    .product-cards {
+      display:flex;
+      justify-content:center;
+      gap:30px;
+      flex-wrap:wrap;
+    }
+
+    .product-card {
+      background:#ffe0b2;
+      padding:20px;
+      border-radius:12px;
+      width:250px;
+      text-align:center;
+      box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .product-card img {
+      width:100%;
+      border-radius:10px;
+    }
+
+    /* Footer */
+    footer {
+      background:#333;
+      color:#fff;
+      text-align:center;
+      padding:20px;
+      margin-top:auto;
+    }
+
+    /* ========================= */
+    /* Responsive สำหรับมือถือ */
+    @media screen and (max-width: 768px) {
+      /* Navbar */
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .nav-links a {
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+      }
+
+      /* Hero Section */
+      .hero h1 {
+        font-size: 28px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .hero a {
+        font-size: 16px;
+        padding: 10px 20px;
+      }
+
+      /* Product cards */
+      .product-cards {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .product-card {
+        width: 80%;
+        margin-bottom: 20px;
+      }
+
+      /* Ads Strip */
+      .ads-track {
+        gap: 20px;
+      }
+
+      .ads-track img {
+        max-height: 150px;
+      }
+
+      /* Popup */
+      .modal-content {
+        width: 90%;
+        margin: 20% auto;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -138,27 +283,54 @@
     </div>
   </nav>
 
-  <!-- โฆษณา -->
+  <!-- Ads Strip -->
   <div class="ads-strip">
     <div class="ads-track">
-      <img src="โฆษณา1.jpg" alt="ads" onclick="openModal(this)">
-      <img src="โฆษณา2.jpg" alt="ads" onclick="openModal(this)">
-      <img src="โฆษณา3.jpg" alt="ads" onclick="openModal(this)">
-      <img src="โฆษณา4.jpg" alt="ads" onclick="openModal(this)">
-      <img src="โฆษณา5.jpg" alt="ads" onclick="openModal(this)">
-      <img src="โฆษณา6.jpg" alt="ads" onclick="openModal(this)">
-
-      <!-- ✅ ทำซ้ำ -->
-      <img src="โฆษณา1.jpg" alt="ads" onclick="openModal(this)">
-      <img src="โฆษณา2.jpg" alt="ads" onclick="openModal(this)">
-      <img src="โฆษณา3.jpg" alt="ads" onclick="openModal(this)">
-      <img src="โฆษณา4.jpg" alt="ads" onclick="openModal(this)">
-      <img src="โฆษณา5.jpg" alt="ads" onclick="openModal(this)">
-      <img src="โฆษณา6.jpg" alt="ads" onclick="openModal(this)">
+      <img src="โฆษณา1.jpg" alt="โปรโมชั่น 1" onclick="openModal(this)">
+      <img src="โฆษณา2.jpg" alt="โปรโมชั่น 2" onclick="openModal(this)">
+      <img src="โฆษณา3.jpg" alt="โปรโมชั่น 3" onclick="openModal(this)">
+      <img src="โฆษณา4.jpg" alt="โปรโมชั่น 4" onclick="openModal(this)">
+      <img src="โฆษณา5.jpg" alt="โปรโมชั่น 5" onclick="openModal(this)">
+      <img src="โฆษณา6.jpg" alt="โปรโมชั่น 6" onclick="openModal(this)">
+      <img src="โฆษณา1.jpg" alt="โปรโมชั่น 1" onclick="openModal(this)">
+      <img src="โฆษณา2.jpg" alt="โปรโมชั่น 2" onclick="openModal(this)">
+      <img src="โฆษณา3.jpg" alt="โปรโมชั่น 3" onclick="openModal(this)">
+      <img src="โฆษณา4.jpg" alt="โปรโมชั่น 4" onclick="openModal(this)">
+      <img src="โฆษณา5.jpg" alt="โปรโมชั่น 5" onclick="openModal(this)">
+      <img src="โฆษณา6.jpg" alt="โปรโมชั่น 6" onclick="openModal(this)">
     </div>
   </div>
 
-  <!-- ✅ Popup -->
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>🍟 เฟรนฟรายชีส กรอบนอก นุ่มใน 🧀</h1>
+    <p>อร่อยเต็มคำ ราคาสบายกระเป๋า</p>
+    <a href="product.html">สั่งเลย 💳</a>
+  </section>
+
+  <!-- Product Section -->
+  <section class="products">
+    <h2>เมนูยอดนิยม</h2>
+    <div class="product-cards">
+      <div class="product-card">
+        <img src="menu1.jpg" alt="เฟรนฟรายชีส">
+        <h3>เฟรนฟรายชีส</h3>
+        <p>ราคา 59 บาท</p>
+      </div>
+      <div class="product-card">
+        <img src="menu2.jpg" alt="เฟรนฟรายชีสเบคอน">
+        <h3>เฟรนฟรายชีสเบคอน</h3>
+        <p>ราคา 79 บาท</p>
+      </div>
+      <div class="product-card">
+        <img src="menu3.jpg" alt="เฟรนฟรายชีสไก่">
+        <h3>เฟรนฟรายชีสไก่</h3>
+        <p>ราคา 89 บาท</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popup Modal -->
   <div id="myModal" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeModal()">&times;</span>
@@ -166,11 +338,12 @@
       <p id="popup-text">รายละเอียดโปรโมชั่น</p>
     </div>
   </div>
-<!-- ✅ Footer -->
-<footer style="background:#333; color:#fff; text-align:center; padding:20px; margin-top:50px;">
-  <p>🍟 ร้านเฟรนฟรายชีส 🧀 | โทร: 012-345-6789 | Line: @frenchfries</p>
-  <p>© 2025 French Fries Cheese. All rights reserved.</p>
-</footer>
+
+  <!-- Footer -->
+  <footer>
+    <p>🍟 ร้านเฟรนฟรายชีส 🧀 | โทร: 012-345-6789 | Line: @frenchfries</p>
+    <p>© 2025 French Fries Cheese. All rights reserved.</p>
+  </footer>
 
   <script>
     function openModal(imgElement) {
@@ -183,7 +356,6 @@
       document.getElementById("myModal").style.display = "none";
     }
 
-    // ปิด popup ถ้าคลิกด้านนอก
     window.onclick = function(event) {
       let modal = document.getElementById("myModal");
       if (event.target === modal) {

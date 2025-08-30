@@ -3,269 +3,363 @@
     <head>
       <meta charset="UTF-8">
       <title>ร้านเฟรนฟรายชีส</title>
+        <link rel="icon" type="image/png" href="โลโก้บนหัว-fotor-2025083021143.png">
       <style>
-        body {
-          font-family: 'Prompt', sans-serif;
-          background-color: #b45706;
-          margin: 0;
-          padding: 0;
-          min-height: 100vh;
-          display: flex;
-          flex-direction: column;
-        }
+/* styles.css */
 
-        /* Navbar */
-        nav {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          background-color: #eda642;
-          padding: 10px 20px;
-          position: sticky;
-          top: 0;
-          z-index: 999;
-          box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
+/* รีเซ็ตสไตล์ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-        .logo img {
-          height: 60px;
-          width: 60px;
-          border-radius: 50%;
-          object-fit: cover;
-        }
+/* ตั้งค่าพื้นฐาน */
+body {
+  font-family: 'Prompt', sans-serif;
+  background-color: #b45706;
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 
-        .nav-links {
-          display: flex;
-          gap: 20px;
-        }
+/* Navbar */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #eda642;
+  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
 
-        .nav-links a {
-          color: #fff;
-          text-decoration: none;
-          font-size: 16px;
-          padding: 8px 15px;
-          border-radius: 6px;
-          transition: background 0.3s ease;
-        }
+.logo img {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
 
-        .nav-links a:hover {
-          background: #fb8c00;
-        }
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
 
-        /* Ads Strip */
-        .ads-strip {
-          width: 100%;
-          background-color: #ffd54f;
-          overflow: hidden;
-          position: relative;
-          padding: 20px 0;
-        }
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 8px 15px;
+  border-radius: 6px;
+  transition: background 0.3s ease;
+}
 
-        .ads-track {
-          display: flex;
-          width: max-content;
-          align-items: center;
-          gap: 50px;
-          animation: scroll-left 30s linear infinite;
-        }
+.nav-links a:hover {
+  background: #fb8c00;
+}
 
-        .ads-track img {
-          max-height: 200px;
-          width: auto;
-          object-fit: contain;
-          cursor: pointer;
-          transition: transform 0.3s ease;
-        }
+/* คอนเทนเนอร์หลัก */
+.container {
+  max-width: 100%;
+  padding: 15px;
+  margin: 0 auto;
+  flex: 1;
+}
 
-        .ads-track img:hover {
-          transform: scale(1.05);
-        }
+/* Ads Strip */
+.ads-strip {
+  width: 100%;
+  background-color: #ffd54f;
+  overflow: hidden;
+  padding: 20px 0;
+}
 
-        @keyframes scroll-left {
-          0%   { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
+.ads-track {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  gap: 20px;
+  animation: scroll-left 30s linear infinite;
+}
 
-        .ads-strip:hover .ads-track {
-          animation-play-state: paused;
-        }
+.ads-track img {
+  max-height: 150px;
+  width: auto;
+  object-fit: contain;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  will-change: transform;
+}
 
-        /* Popup Modal */
-        .modal {
-          display: none;
-          position: fixed;
-          z-index: 10000;
-          left: 0;
-          top: 0;
-          width: 100%;
-          height: 100%;
-          overflow: auto;
-          background-color: rgba(0,0,0,0.7);
-        }
+.ads-track img:hover {
+  transform: scale(1.05);
+}
 
-        .modal-content {
-          background-color: #fff;
-          margin: 10% auto;
-          padding: 20px;
-          border-radius: 10px;
-          width: 60%;
-          max-width: 600px;
-          text-align: center;
-          box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
 
-        .modal-content img {
-          max-width: 100%;
-          height: auto;
-          border-radius: 10px;
-        }
+.ads-strip:hover .ads-track {
+  animation-play-state: paused;
+}
 
-        .close {
-          color: #aaa;
-          float: right;
-          font-size: 28px;
-          font-weight: bold;
-          cursor: pointer;
-        }
+/* Popup Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 10000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.7);
+}
 
-        .close:hover {
-          color: #000;
-        }
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 10px;
+  width: 60%;
+  max-width: 600px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
 
-        /* Hero Section */
-        .hero {
-          text-align: center;
-          padding: 80px 20px;
-          background:#fff3e0;
-        }
+.modal-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
 
-        .hero h1 {
-          font-size: 40px;
-          color:#d35400;
-          margin-bottom: 20px;
-        }
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
 
-        .hero p {
-          font-size: 20px;
-          color:#555;
-        }
+.close:hover {
+  color: #000;
+}
 
-        .hero a {
-          display:inline-block;
-          margin-top:20px;
-          padding:12px 25px;
-          background:#e67e22;
-          color:#fff;
-          border-radius:8px;
-          text-decoration:none;
-          font-size:18px;
-        }
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 80px 20px;
+  background: #fff3e0;
+}
 
-        /* Product Section */
-        .products {
-          padding:60px 20px;
-          background:#fff;
-        }
+.hero h1 {
+  font-size: 40px;
+  color: #d35400;
+  margin-bottom: 20px;
+}
 
-        .products h2 {
-          text-align:center;
-          color:#d35400;
-          margin-bottom:40px;
-        }
+.hero p {
+  font-size: 20px;
+  color: #555;
+}
 
-        .product-cards {
-          display:flex;
-          justify-content:center;
-          gap:30px;
-          flex-wrap:wrap;
-        }
+.hero a {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 25px;
+  background: #e67e22;
+  color: #fff;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 18px;
+}
 
-        .product-card {
-          background:#ffe0b2;
-          padding:20px;
-          border-radius:12px;
-          width:250px;
-          text-align:center;
-          box-shadow:0 4px 10px rgba(0,0,0,0.1);
-        }
+/* Product Section */
+.products {
+  padding: 60px 20px;
+  background: #fff;
+}
 
-        .product-card img {
-          width:100%;
-          border-radius:10px;
-        }
+.products h2 {
+  text-align: center;
+  color: #d35400;
+  margin-bottom: 40px;
+}
 
-        /* Footer */
-        footer {
-          background:#333;
-          color:#fff;
-          text-align:center;
-          padding:20px;
-          margin-top:auto;
-        }
+.product-cards {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
 
-        /* ========================= */
-        /* Responsive สำหรับมือถือ */
-        @media screen and (max-width: 768px) {
-          /* Navbar */
-          nav {
-            flex-direction: column;
-            align-items: flex-start;
-          }
+.product-card {
+  background: #ffe0b2;
+  padding: 20px;
+  border-radius: 12px;
+  width: 250px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
 
-          .nav-links {
-            flex-direction: column;
-            width: 100%;
-            gap: 10px;
-            margin-top: 10px;
-          }
+.product-card img {
+  width: 100%;
+  border-radius: 10px;
+}
 
-          .nav-links a {
-            width: 100%;
-            text-align: center;
-            padding: 10px 0;
-          }
+.product-card button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background: #e67e22;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
 
-          /* Hero Section */
-          .hero h1 {
-            font-size: 28px;
-          }
+/* Cart and Payment */
+.cart, .payment {
+  margin: 20px 0;
+  text-align: center;
+}
 
-          .hero p {
-            font-size: 16px;
-          }
+.cart p, .payment p {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
 
-          .hero a {
-            font-size: 16px;
-            padding: 10px 20px;
-          }
+.qr-code img {
+  max-width: 200px;
+}
 
-          /* Product cards */
-          .product-cards {
-            flex-direction: column;
-            align-items: center;
-          }
+/* Footer */
+footer {
+  background: #333;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  margin-top: auto;
+}
 
-          .product-card {
-            width: 80%;
-            margin-bottom: 20px;
-          }
+/* Responsive สำหรับมือถือ */
+@media screen and (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
-          /* Ads Strip */
-          .ads-track {
-            gap: 20px;
-          }
+  .nav-links {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    margin-top: 10px;
+  }
 
-          .ads-track img {
-            max-height: 150px;
-          }
+  .nav-links a {
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+  }
 
-          /* Popup */
-          .modal-content {
-            width: 90%;
-            margin: 20% auto;
-          }
-        }
+  .hero {
+    padding: 40px 10px;
+  }
 
+  .hero h1 {
+    font-size: 28px;
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
+
+  .hero a {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+
+  .product-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .product-card {
+    width: 80%;
+    margin-bottom: 20px;
+  }
+
+  .ads-track img {
+    max-height: 120px;
+  }
+
+  .modal-content {
+    width: 90%;
+    margin: 20% auto;
+  }
+}
+
+/* ปรับแต่งสำหรับ iPhone 13 (~390px) */
+@media screen and (max-width: 390px) {
+  nav {
+    padding: 8px 10px;
+  }
+
+  .logo img {
+    height: 50px;
+    width: 50px;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+    padding: 8px 0;
+  }
+
+  .hero h1 {
+    font-size: 24px;
+  }
+
+  .hero p {
+    font-size: 14px;
+  }
+
+  .hero a {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  .product-card {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .product-card h3 {
+    font-size: 16px;
+  }
+
+  .product-card p {
+    font-size: 14px;
+  }
+
+  .ads-track img {
+    max-height: 100px;
+  }
+
+  .modal-content {
+    width: 95%;
+    margin: 30% auto;
+    padding: 15px;
+  }
+
+  .modal-content img {
+    max-height: 200px;
+  }
+}
       </style>
     </head>
     <body>
@@ -341,7 +435,7 @@
 
       <!-- Footer -->
       <footer>
-        <p>🍟 ร้านเฟรนฟรายชีส 🧀 | โทร: 012-345-6789 | Line: @frenchfries</p>
+        <p>🍟 ร้านเฟรนฟรายชีส 🧀 </p>
         <p>© 2025 French Fries Cheese. All rights reserved.</p>
       </footer>
 
